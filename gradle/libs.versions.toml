@@ -43,7 +43,7 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
 kotlinx-coroutines-reactor = { module = "org.jetbrains.kotlinx:kolinx-coroutines-reactor", version.ref = "kotlinx-coroutines" }
 
 # Database
-postgresql = { module = "org.postgres:postgresql" }
+postgresql = { module = "org.postgresql:postgresql" }
 
 # HTTP
 okhttp = { module = "com.square.okhttp3:okhttp", version.ref = "okhttp" }

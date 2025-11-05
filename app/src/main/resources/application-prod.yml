@@ -1,0 +1,7 @@
+spring:
+  config:
+    import: optional:file:.env.prod[.properties]
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
