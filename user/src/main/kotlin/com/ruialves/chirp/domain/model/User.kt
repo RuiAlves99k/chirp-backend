@@ -1,4 +1,4 @@
-package com.ruialves.user.domain.model
+package com.ruialves.chirp.domain.model
 
 import java.util.UUID
 
