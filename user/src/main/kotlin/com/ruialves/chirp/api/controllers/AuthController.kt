@@ -2,6 +2,7 @@ package com.ruialves.chirp.api.controllers
 
 import com.ruialves.chirp.api.dto.AuthenticatedUserDto
 import com.ruialves.chirp.api.dto.LoginRequest
+import com.ruialves.chirp.api.dto.RefreshRequest
 import com.ruialves.chirp.api.dto.RegisterRequest
 import com.ruialves.chirp.api.dto.UserDto
 import com.ruialves.chirp.api.mappers.toAuthenticatedUserDto
@@ -20,7 +21,7 @@ class AuthController(private val authService: AuthService) {
     @PostMapping("/register")
     fun register(
         @Valid @RequestBody body: RegisterRequest
-    ) : UserDto {
+    ): UserDto {
         return authService.register(
             email = body.email,
             username = body.username,
@@ -36,5 +37,13 @@ class AuthController(private val authService: AuthService) {
             email = body.email,
             password = body.password
         ).toAuthenticatedUserDto()
+    }
+
+    @PostMapping("/refresh")
+    fun refresh(
+        @RequestBody body: RefreshRequest
+    ): AuthenticatedUserDto {
+        return authService.refresh(body.refreshToken)
+            .toAuthenticatedUserDto()
     }
 }

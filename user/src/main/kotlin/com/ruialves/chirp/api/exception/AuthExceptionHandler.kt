@@ -4,7 +4,7 @@ import com.ruialves.chirp.domain.exception.InvalidCredentialsException
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.PasswordEncodingException
 import com.ruialves.chirp.domain.exception.UserAlreadyExistsException
-import com.ruialves.chirp.domain.exception.UserNotFound
+import com.ruialves.chirp.domain.exception.UserNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -42,10 +42,10 @@ class AuthExceptionHandler {
         "message" to e.message
     )
 
-    @ExceptionHandler(UserNotFound::class)
+    @ExceptionHandler(UserNotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     fun onUserNotFound(
-        e: UserNotFound
+        e: UserNotFoundException
     ) = mapOf(
         "code" to "USER_NOT_FOUND",
         "message" to e.message
