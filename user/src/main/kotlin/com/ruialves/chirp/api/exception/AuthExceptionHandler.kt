@@ -1,7 +1,10 @@
 package com.ruialves.chirp.api.exception
 
+import com.ruialves.chirp.domain.exception.InvalidCredentialsException
+import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.PasswordEncodingException
 import com.ruialves.chirp.domain.exception.UserAlreadyExistsException
+import com.ruialves.chirp.domain.exception.UserNotFound
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -27,6 +30,34 @@ class AuthExceptionHandler {
         e: UserAlreadyExistsException
     ) = mapOf(
         "code" to "INTERNAL_ERROR",
+        "message" to e.message
+    )
+
+    @ExceptionHandler(InvalidTokenException::class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    fun onInvalidToken(
+        e: InvalidTokenException
+    ) = mapOf(
+        "code" to "UNAUTHORIZED",
+        "message" to e.message
+    )
+
+    @ExceptionHandler(UserNotFound::class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    fun onUserNotFound(
+        e: UserNotFound
+    ) = mapOf(
+        "code" to "USER_NOT_FOUND",
+        "message" to e.message
+    )
+
+
+    @ExceptionHandler(InvalidCredentialsException::class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    fun onInvalidCredentials(
+        e: InvalidCredentialsException
+    ) = mapOf(
+        "code" to "INVALID_CREDENTIALS",
         "message" to e.message
     )
 

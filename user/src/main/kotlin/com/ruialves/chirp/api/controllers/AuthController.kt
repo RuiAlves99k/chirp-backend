@@ -1,7 +1,10 @@
 package com.ruialves.chirp.api.controllers
 
+import com.ruialves.chirp.api.dto.AuthenticatedUserDto
+import com.ruialves.chirp.api.dto.LoginRequest
 import com.ruialves.chirp.api.dto.RegisterRequest
 import com.ruialves.chirp.api.dto.UserDto
+import com.ruialves.chirp.api.mappers.toAuthenticatedUserDto
 import com.ruialves.chirp.api.mappers.toUserDto
 import com.ruialves.chirp.service.auth.AuthService
 import jakarta.validation.Valid
@@ -23,5 +26,15 @@ class AuthController(private val authService: AuthService) {
             username = body.username,
             password = body.password
         ).toUserDto()
+    }
+
+    @PostMapping("/login")
+    fun login(
+        @RequestBody body: LoginRequest
+    ): AuthenticatedUserDto {
+        return authService.login(
+            email = body.email,
+            password = body.password
+        ).toAuthenticatedUserDto()
     }
 }
