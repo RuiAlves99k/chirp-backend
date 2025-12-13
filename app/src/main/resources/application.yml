@@ -33,3 +33,8 @@ spring:
 
 jwt:
   secret: ${JWT_SECRET}
+
+chirp:
+  email:
+    verification:
+      expiry-hours: 24

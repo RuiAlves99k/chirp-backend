@@ -1,5 +1,6 @@
 package com.ruialves.chirp.api.exception
 
+import com.ruialves.chirp.domain.exception.EmailNotVerifiedException
 import com.ruialves.chirp.domain.exception.InvalidCredentialsException
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.PasswordEncodingException
@@ -39,6 +40,15 @@ class AuthExceptionHandler {
         e: InvalidTokenException
     ) = mapOf(
         "code" to "UNAUTHORIZED",
+        "message" to e.message
+    )
+
+    @ExceptionHandler(EmailNotVerifiedException::class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    fun onEmailNotVerified(
+        e: EmailNotVerifiedException
+    ) = mapOf(
+        "code" to "EMAIL_NOT_VERIFIED",
         "message" to e.message
     )
 
