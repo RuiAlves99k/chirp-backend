@@ -1,4 +1,4 @@
-package com.ruialves.chirp.service.auth
+package com.ruialves.chirp.service
 
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.UserNotFoundException
@@ -27,20 +27,12 @@ class EmailVerificationService(
         val userEntity = userRepository.findByEmail(email)
             ?: throw UserNotFoundException()
 
-        val existingTokens = emailVerificationRepository.findByUserAndUsedAtIsNull(
+        emailVerificationRepository.invalidateActiveTokensForUser(
             user = userEntity
         )
 
-        val now = Instant.now()
-        val usedTokens = existingTokens.map {
-            it.apply {
-                this.usedAt = now
-            }
-        }
-        emailVerificationRepository.saveAll(usedTokens)
-
         val token = EmailVerificationTokenEntity(
-            expiresAt = now.plus(expiryHours, ChronoUnit.HOURS),
+            expiresAt = Instant.now().plus(expiryHours, ChronoUnit.HOURS),
             user = userEntity
         )
 

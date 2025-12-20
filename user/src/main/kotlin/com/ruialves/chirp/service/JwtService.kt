@@ -1,4 +1,4 @@
-package com.ruialves.chirp.service.auth
+package com.ruialves.chirp.service
 
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.model.UserId

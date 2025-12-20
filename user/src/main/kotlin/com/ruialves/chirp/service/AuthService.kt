@@ -1,4 +1,4 @@
-package com.ruialves.chirp.service.auth
+package com.ruialves.chirp.service
 
 import com.ruialves.chirp.domain.exception.EmailNotVerifiedException
 import com.ruialves.chirp.domain.exception.InvalidCredentialsException

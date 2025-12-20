@@ -4,6 +4,7 @@ import com.ruialves.chirp.domain.exception.EmailNotVerifiedException
 import com.ruialves.chirp.domain.exception.InvalidCredentialsException
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.PasswordEncodingException
+import com.ruialves.chirp.domain.exception.SamePasswordException
 import com.ruialves.chirp.domain.exception.UserAlreadyExistsException
 import com.ruialves.chirp.domain.exception.UserNotFoundException
 import org.springframework.http.HttpStatus
@@ -51,6 +52,16 @@ class AuthExceptionHandler {
         "code" to "EMAIL_NOT_VERIFIED",
         "message" to e.message
     )
+
+    @ExceptionHandler(SamePasswordException::class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    fun onSamePassword(
+        e: SamePasswordException
+    ) = mapOf(
+        "code" to "SAME_PASSWORD",
+        "message" to e.message
+    )
+
 
     @ExceptionHandler(UserNotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

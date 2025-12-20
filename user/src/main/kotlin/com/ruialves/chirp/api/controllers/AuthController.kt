@@ -1,14 +1,18 @@
 package com.ruialves.chirp.api.controllers
 
 import com.ruialves.chirp.api.dto.AuthenticatedUserDto
+import com.ruialves.chirp.api.dto.ChangePasswordRequest
+import com.ruialves.chirp.api.dto.EmailRequest
 import com.ruialves.chirp.api.dto.LoginRequest
 import com.ruialves.chirp.api.dto.RefreshRequest
 import com.ruialves.chirp.api.dto.RegisterRequest
+import com.ruialves.chirp.api.dto.ResetPasswordRequest
 import com.ruialves.chirp.api.dto.UserDto
 import com.ruialves.chirp.api.mappers.toAuthenticatedUserDto
 import com.ruialves.chirp.api.mappers.toUserDto
-import com.ruialves.chirp.service.auth.AuthService
-import com.ruialves.chirp.service.auth.EmailVerificationService
+import com.ruialves.chirp.service.AuthService
+import com.ruialves.chirp.service.EmailVerificationService
+import com.ruialves.chirp.service.PasswordResetService
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(
     private val authService: AuthService,
     private val emailVerificationService: EmailVerificationService,
+    private val passwordResetService: PasswordResetService,
 ) {
 
     @PostMapping("/register")
@@ -67,4 +72,27 @@ class AuthController(
         emailVerificationService.verifyEmail(token)
     }
 
+    @PostMapping("/forgot-password")
+    fun forgotPassword(
+        @Valid @RequestBody body: EmailRequest
+    ){
+        passwordResetService.requestPasswordReset(body.email)
+    }
+
+    @PostMapping("/reset-password")
+    fun resetPassword(
+        @Valid @RequestBody body: ResetPasswordRequest
+    ){
+        passwordResetService.resetPassword(
+            token = body.token,
+            newPassword = body.newPassword
+        )
+    }
+
+    @PostMapping("/change-password")
+    fun changePassword(
+        @Valid @RequestBody body: ChangePasswordRequest
+    ){
+        // TODO: Extract request user ID and call service
+    }
 }

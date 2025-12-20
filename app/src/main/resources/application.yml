@@ -38,3 +38,4 @@ chirp:
   email:
     verification:
       expiry-hours: 24
+      expiry-minutes: 30
