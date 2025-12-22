@@ -10,6 +10,7 @@ import com.ruialves.chirp.api.dto.ResetPasswordRequest
 import com.ruialves.chirp.api.dto.UserDto
 import com.ruialves.chirp.api.mappers.toAuthenticatedUserDto
 import com.ruialves.chirp.api.mappers.toUserDto
+import com.ruialves.chirp.infra.rate_limiting.EmailRateLimiter
 import com.ruialves.chirp.service.AuthService
 import com.ruialves.chirp.service.EmailVerificationService
 import com.ruialves.chirp.service.PasswordResetService
@@ -27,6 +28,7 @@ class AuthController(
     private val authService: AuthService,
     private val emailVerificationService: EmailVerificationService,
     private val passwordResetService: PasswordResetService,
+    private val emailRateLimiter: EmailRateLimiter,
 ) {
 
     @PostMapping("/register")
@@ -48,6 +50,18 @@ class AuthController(
             email = body.email,
             password = body.password
         ).toAuthenticatedUserDto()
+    }
+
+    @PostMapping("/resend-verification")
+    fun resendVerification(
+        @Valid @RequestBody body: EmailRequest
+    ) {
+        emailRateLimiter.withRateLimit(
+            email = body.email,
+            action = {
+                emailVerificationService.resendVerificationEmail(body.email)
+            }
+        )
     }
 
     @PostMapping("/refresh")
@@ -75,14 +89,14 @@ class AuthController(
     @PostMapping("/forgot-password")
     fun forgotPassword(
         @Valid @RequestBody body: EmailRequest
-    ){
+    ) {
         passwordResetService.requestPasswordReset(body.email)
     }
 
     @PostMapping("/reset-password")
     fun resetPassword(
         @Valid @RequestBody body: ResetPasswordRequest
-    ){
+    ) {
         passwordResetService.resetPassword(
             token = body.token,
             newPassword = body.newPassword
@@ -92,7 +106,7 @@ class AuthController(
     @PostMapping("/change-password")
     fun changePassword(
         @Valid @RequestBody body: ChangePasswordRequest
-    ){
+    ) {
         // TODO: Extract request user ID and call service
     }
 }

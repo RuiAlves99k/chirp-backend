@@ -4,6 +4,7 @@ import com.ruialves.chirp.domain.exception.EmailNotVerifiedException
 import com.ruialves.chirp.domain.exception.InvalidCredentialsException
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.PasswordEncodingException
+import com.ruialves.chirp.domain.exception.RateLimitException
 import com.ruialves.chirp.domain.exception.SamePasswordException
 import com.ruialves.chirp.domain.exception.UserAlreadyExistsException
 import com.ruialves.chirp.domain.exception.UserNotFoundException
@@ -82,6 +83,14 @@ class AuthExceptionHandler {
         "message" to e.message
     )
 
+    @ExceptionHandler(RateLimitException::class)
+    @ResponseStatus(HttpStatus.TOO_MANY_REQUESTS)
+    fun onRateLimitExceeded(
+        e: RateLimitException
+    ) = mapOf(
+        "code" to "RATE_LIMIT_EXCEEDED",
+        "message" to e.message
+    )
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun onValidationException(

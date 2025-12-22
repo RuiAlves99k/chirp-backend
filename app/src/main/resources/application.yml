@@ -2,6 +2,15 @@ spring:
   application:
     name: chirp
 
+  data:
+    redis:
+      host: ${REDIS_URL}
+      password: ${REDIS_PASSWORD}
+      username: ${REDIS_USERNAME}
+      port: ${REDIS_PORT}
+      connect-timeout: 5000ms
+      timeout: 2000ms
+
   datasource:
     url: ${POSTGRES_URL}
     username: ${POSTGRES_USERNAME}

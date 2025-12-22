@@ -65,6 +65,10 @@ class EmailVerificationService(
         ).toUser()
     }
 
+    fun resendVerificationEmail(email: String){
+        // TODO: Resend verification email
+    }
+
     @Scheduled(cron = "0 0 3 * * *")
     fun cleanupExpiredTokens(){
         emailVerificationRepository.deleteByExpiresAtLessThan(Instant.now())
