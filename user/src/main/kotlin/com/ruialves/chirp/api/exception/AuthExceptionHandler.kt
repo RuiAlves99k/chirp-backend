@@ -6,6 +6,7 @@ import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.PasswordEncodingException
 import com.ruialves.chirp.domain.exception.RateLimitException
 import com.ruialves.chirp.domain.exception.SamePasswordException
+import com.ruialves.chirp.domain.exception.UnauthorizedException
 import com.ruialves.chirp.domain.exception.UserAlreadyExistsException
 import com.ruialves.chirp.domain.exception.UserNotFoundException
 import org.springframework.http.HttpStatus
@@ -107,4 +108,13 @@ class AuthExceptionHandler {
                 )
             )
     }
+
+    @ExceptionHandler(UnauthorizedException::class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    fun onUnauthorized(
+        e: UnauthorizedException
+    ) = mapOf(
+        "code" to "UNAUTHORIZED",
+        "message" to e.message
+    )
 }

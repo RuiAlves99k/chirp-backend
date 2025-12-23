@@ -11,6 +11,7 @@ import com.ruialves.chirp.api.dto.ResetPasswordRequest
 import com.ruialves.chirp.api.dto.UserDto
 import com.ruialves.chirp.api.mappers.toAuthenticatedUserDto
 import com.ruialves.chirp.api.mappers.toUserDto
+import com.ruialves.chirp.api.util.requestUserId
 import com.ruialves.chirp.infra.rate_limiting.EmailRateLimiter
 import com.ruialves.chirp.service.AuthService
 import com.ruialves.chirp.service.EmailVerificationService
@@ -134,6 +135,10 @@ class AuthController(
     fun changePassword(
         @Valid @RequestBody body: ChangePasswordRequest
     ) {
-        // TODO: Extract request user ID and call service
+        passwordResetService.changePassword(
+            requestUserId,
+            oldPassword = body.oldPassword,
+            newPassword = body.newPassword,
+        )
     }
 }
