@@ -1,5 +1,6 @@
 package com.ruialves.chirp.service
 
+import com.ruialves.chirp.domain.events.user.UserEvent
 import com.ruialves.chirp.domain.exception.EmailNotVerifiedException
 import com.ruialves.chirp.domain.exception.InvalidCredentialsException
 import com.ruialves.chirp.domain.exception.InvalidTokenException
@@ -7,10 +8,11 @@ import com.ruialves.chirp.domain.exception.UserAlreadyExistsException
 import com.ruialves.chirp.domain.exception.UserNotFoundException
 import com.ruialves.chirp.domain.model.AuthenticatedUser
 import com.ruialves.chirp.domain.model.User
-import com.ruialves.chirp.domain.model.UserId
+import com.ruialves.chirp.domain.type.UserId
 import com.ruialves.chirp.infra.database.entities.RefreshTokenEntity
 import com.ruialves.chirp.infra.database.entities.UserEntity
 import com.ruialves.chirp.infra.database.mappers.toUser
+import com.ruialves.chirp.infra.message_queue.EventPublisher
 import com.ruialves.chirp.infra.repositories.RefreshTokenRepository
 import com.ruialves.chirp.infra.repositories.UserRepository
 import com.ruialves.chirp.infra.security.PasswordEncoder
@@ -28,6 +30,7 @@ class AuthService(
     private val jwtService: JwtService,
     private val refreshTokenRepository: RefreshTokenRepository,
     private val emailVerificationService: EmailVerificationService,
+    private val eventPublisher: EventPublisher,
 ) {
 
     @Transactional
@@ -50,6 +53,15 @@ class AuthService(
         ).toUser()
 
         val token = emailVerificationService.createVerificationToken(trimmedEmail)
+
+        eventPublisher.publish(
+            event = UserEvent.Created(
+                userId = savedUser.id,
+                email  = savedUser.email,
+                username = savedUser.username,
+                verificationToken = token.token
+            )
+        )
 
         return savedUser
     }

@@ -1,11 +1,13 @@
 package com.ruialves.chirp.service
 
+import com.ruialves.chirp.domain.events.user.UserEvent
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.UserNotFoundException
 import com.ruialves.chirp.domain.model.EmailVerificationToken
 import com.ruialves.chirp.infra.database.entities.EmailVerificationTokenEntity
 import com.ruialves.chirp.infra.database.mappers.toEmailVerificationToken
 import com.ruialves.chirp.infra.database.mappers.toUser
+import com.ruialves.chirp.infra.message_queue.EventPublisher
 import com.ruialves.chirp.infra.repositories.EmailVerificationRepository
 import com.ruialves.chirp.infra.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Value
@@ -14,12 +16,14 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.Instant
 import java.time.temporal.ChronoUnit
+import kotlin.String
 
 @Service
 class EmailVerificationService(
     private val emailVerificationRepository: EmailVerificationRepository,
     private val userRepository: UserRepository,
     @param:Value("\${chirp.email.verification.expiry-hours}") private val expiryHours: Long,
+    private val eventPublisher: EventPublisher,
 ) {
 
     @Transactional
@@ -65,12 +69,26 @@ class EmailVerificationService(
         ).toUser()
     }
 
-    fun resendVerificationEmail(email: String){
-        // TODO: Resend verification email
+    @Transactional
+    fun resendVerificationEmail(email: String) {
+        val token = createVerificationToken(email)
+
+        if (token.user.hasEmailVerified) {
+            return
+        }
+
+        eventPublisher.publish(
+            UserEvent.RequestResendVerification(
+                userId = token.user.id,
+                email = token.user.email,
+                username = token.user.username,
+                verificationToken = token.token,
+            )
+        )
     }
 
     @Scheduled(cron = "0 0 3 * * *")
-    fun cleanupExpiredTokens(){
+    fun cleanupExpiredTokens() {
         emailVerificationRepository.deleteByExpiresAtLessThan(Instant.now())
     }
 }

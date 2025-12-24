@@ -1,6 +1,6 @@
 package com.ruialves.chirp.api.dto
 
-import com.ruialves.chirp.domain.model.UserId
+import com.ruialves.chirp.domain.type.UserId
 
 data class UserDto(
     val id: UserId,

@@ -4,7 +4,7 @@ import com.ruialves.chirp.domain.exception.InvalidCredentialsException
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.SamePasswordException
 import com.ruialves.chirp.domain.exception.UserNotFoundException
-import com.ruialves.chirp.domain.model.UserId
+import com.ruialves.chirp.domain.type.UserId
 import com.ruialves.chirp.infra.database.entities.PasswordResetTokenEntity
 import com.ruialves.chirp.infra.repositories.PasswordResetTokenRepository
 import com.ruialves.chirp.infra.repositories.RefreshTokenRepository
