@@ -59,12 +59,28 @@ spring:
           max-interval: 10000ms
           max-attempts: 3
           multiplier: 2
+  mail:
+    port: ${SMPT_PORT}
+    host: ${SMPT_HOST}
+    username: ${SMPT_USERNAME}
+    password: ${SMPT_PASSWORD}
+    properties:
+      mail:
+        smpt:
+          auth: true
+          starttls:
+            enabled: true
+  thymeleaf:
+    suffix: .html
+
 
 jwt:
   secret: ${JWT_SECRET}
 
 chirp:
   email:
+    url: ${EMAIL_URL}
+    from: ${EMAIL_FROM}
     verification:
       expiry-hours: 24
       expiry-minutes: 30

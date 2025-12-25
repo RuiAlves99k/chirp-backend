@@ -1,11 +1,13 @@
 package com.ruialves.chirp.service
 
+import com.ruialves.chirp.domain.events.user.UserEvent
 import com.ruialves.chirp.domain.exception.InvalidCredentialsException
 import com.ruialves.chirp.domain.exception.InvalidTokenException
 import com.ruialves.chirp.domain.exception.SamePasswordException
 import com.ruialves.chirp.domain.exception.UserNotFoundException
 import com.ruialves.chirp.domain.type.UserId
 import com.ruialves.chirp.infra.database.entities.PasswordResetTokenEntity
+import com.ruialves.chirp.infra.message_queue.EventPublisher
 import com.ruialves.chirp.infra.repositories.PasswordResetTokenRepository
 import com.ruialves.chirp.infra.repositories.RefreshTokenRepository
 import com.ruialves.chirp.infra.repositories.UserRepository
@@ -15,6 +17,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
@@ -26,6 +29,7 @@ class PasswordResetService(
     @param:Value("\${chirp.email.verification.expiry-minutes}")
     private val expiryMinutes: Long,
     private val refreshTokenRepository: RefreshTokenRepository,
+    private val eventPublisher: EventPublisher,
 ) {
 
     @Transactional
@@ -40,7 +44,15 @@ class PasswordResetService(
         )
         passwordResetTokenRepository.save(token)
 
-        // TODO: Inform notification service about password reset trigger to send email
+        eventPublisher.publish(
+            event = UserEvent.RequestResetPassword(
+                userId = user.id!!,
+                email = user.email,
+                username = user.username,
+                verificationToken = token.token,
+                expiresInMinutes = expiryMinutes,
+            )
+        )
     }
 
     @Transactional
