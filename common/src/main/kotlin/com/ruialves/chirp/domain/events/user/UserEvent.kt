@@ -24,7 +24,6 @@ sealed class UserEvent(
         val userId: UserId,
         val email: String,
         val username: String,
-        val verificationToken: String,
         override val eventKey: String = UserEventConstants.USER_VERIFIED,
     ): UserEvent(), ChirpEvent
 
