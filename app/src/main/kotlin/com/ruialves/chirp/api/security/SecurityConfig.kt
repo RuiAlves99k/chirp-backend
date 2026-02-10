@@ -1,4 +1,4 @@
-package com.ruialves.chirp.security
+package com.ruialves.chirp.api.security
 
 import com.ruialves.chirp.api.config.JwtAuthFilter
 import jakarta.servlet.DispatcherType
