@@ -3,7 +3,9 @@ package com.ruialves.chirp.api.exception_handling
 import com.ruialves.chirp.domain.exception.ChatNotFoundException
 import com.ruialves.chirp.domain.exception.ChatParticipantNotFoundException
 import com.ruialves.chirp.domain.exception.InvalidChatSizeException
+import com.ruialves.chirp.domain.exception.InvalidProfilePictureException
 import com.ruialves.chirp.domain.exception.MessageNotFoundException
+import com.ruialves.chirp.domain.exception.StorageException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -29,5 +31,20 @@ class ChatExceptionHandler {
         "code" to "INVALID_CHAT_SIZE",
         "message" to e.message
     )
+
+    @ExceptionHandler(InvalidProfilePictureException::class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    fun onInvalidProfilePicture(e: InvalidProfilePictureException) = mapOf(
+        "code" to "INVALID_PROFILE_PICTURE",
+        "message" to e.message
+    )
+
+    @ExceptionHandler(StorageException::class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun onStorageError(e: StorageException) = mapOf(
+        "code" to "STORAGE_ERROR",
+        "message" to e.message
+    )
+
 
 }

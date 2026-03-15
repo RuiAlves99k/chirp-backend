@@ -6,6 +6,7 @@ import com.ruialves.chirp.api.mappers.toChatMessageDto
 import com.ruialves.chirp.domain.event.ChatParticipantsJoinedEvent
 import com.ruialves.chirp.domain.event.ChatParticipantsLeftEvent
 import com.ruialves.chirp.domain.event.MessageDeletedEvent
+import com.ruialves.chirp.domain.event.ProfilePictureUpdatedEvent
 import com.ruialves.chirp.domain.type.ChatId
 import com.ruialves.chirp.domain.type.UserId
 import com.ruialves.chirp.infra.service.ChatMessageService
@@ -24,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
 import kotlin.concurrent.write
+import kotlin.math.log
 
 @Component
 class ChatWebSocketHandler(
@@ -279,6 +281,46 @@ class ChatWebSocketHandler(
         logger.debug("Received pong from ${session.id}")
     }
 
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    fun onProfilePictureUpdated(event: ProfilePictureUpdatedEvent) {
+        val userChats = connectionLock.read {
+            userChatIds[event.userId]?.toList() ?: emptyList()
+        }
+
+        val dto = ProfilePictureUpdateDto(
+            userId = event.userId,
+            newUrl = event.newUrl
+        )
+
+        val sessionIds = mutableSetOf<String>()
+        userChats.forEach { chatId ->
+            connectionLock.read {
+                chatToSessions[chatId]?.let { sessions ->
+                    sessionIds.addAll(sessions)
+                }
+            }
+        }
+
+        val webSocketMessage = OutgoingWebSocketMessage(
+            type = OutgoingWebSocketMessageType.PROFILE_PICTURE_UPDATED,
+            payload = objectMapper.writeValueAsString(dto)
+        )
+
+        val messageJson = objectMapper.writeValueAsString(webSocketMessage)
+
+        sessionIds.forEach { sessionId ->
+            val userSession = connectionLock.read {
+                sessions[sessionId]
+            } ?: return@forEach
+            try {
+                if (userSession.session.isOpen){
+                    userSession.session.sendMessage(TextMessage(messageJson))
+                }
+            } catch (e: Exception) {
+                logger.error("Could not send profile picture update to session $sessionId")
+            }
+        }
+    }
 
     private fun sendError(
         session: WebSocketSession,

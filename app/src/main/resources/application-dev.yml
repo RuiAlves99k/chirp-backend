@@ -14,3 +14,6 @@ chirp:
   rate-limit:
     ip:
       apply-limit: true
+logging:
+  level:
+    com.ruialves.chirp: DEBUG
