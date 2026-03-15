@@ -95,3 +95,6 @@ nginx:
 supabase:
   url: ${SUPABASE_URL}
   service-key: ${SUPABASE_SERVICE_KEY}
+
+firebase:
+  credentials-path: ${FIREBASE_CREDENTIALS}

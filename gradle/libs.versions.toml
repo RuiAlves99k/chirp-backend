@@ -50,7 +50,7 @@ okhttp = { module = "com.square.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging = { module = "com.square.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
 # Firebase
-firebase-admin-sdk = { module = "cmo.google.firebase:firebase-admin", version.ref = "firebase" }
+firebase-admin-sdk = { module = "com.google.firebase:firebase-admin", version.ref = "firebase" }
 
 # Test
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
