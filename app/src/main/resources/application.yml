@@ -84,7 +84,10 @@ chirp:
     verification:
       expiry-hours: 24
       expiry-minutes: 30
-
+  rate-limit:
+    apply-limit: true
+  web-socket:
+    allowed-origin: ${ALLOWED_ORIGIN}
 nginx:
   trusted-ips:
     - "127.0.0.1" # nginx on same machine
