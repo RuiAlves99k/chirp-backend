@@ -2,6 +2,7 @@ package com.ruialves.chirp.infra.service
 
 import com.ruialves.chirp.api.dto.ChatMessageDto
 import com.ruialves.chirp.api.mappers.toChatMessageDto
+import com.ruialves.chirp.domain.event.ChatCreatedEvent
 import com.ruialves.chirp.domain.event.ChatParticipantsJoinedEvent
 import com.ruialves.chirp.domain.event.ChatParticipantsLeftEvent
 import com.ruialves.chirp.domain.exception.ChatNotFoundException
@@ -50,12 +51,19 @@ class ChatService(
 
         val creator = chatParticipantsRepository.findByIdOrNull(creatorId)
             ?: throw ChatParticipantNotFoundException(creatorId)
-        return chatRepository.save(
+        return chatRepository.saveAndFlush(
             ChatEntity(
                 creator = creator,
                 participants = setOf(creator) + otherParticipants
             )
-        ).toChat(lastMessage = null)
+        ).toChat(lastMessage = null).also { entity ->
+            applicationEventPublisher.publishEvent(
+                ChatCreatedEvent(
+                    chatId = entity.id,
+                    participantIds = entity.participants.map { it.userId }
+                )
+            )
+        }
     }
 
     @Transactional

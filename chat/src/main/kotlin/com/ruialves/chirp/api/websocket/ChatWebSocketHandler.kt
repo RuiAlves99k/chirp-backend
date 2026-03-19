@@ -3,6 +3,7 @@ package com.ruialves.chirp.api.websocket
 import com.rabbitmq.tools.jsonrpc.JsonRpcMappingException
 import com.ruialves.chirp.api.dto.ws.*
 import com.ruialves.chirp.api.mappers.toChatMessageDto
+import com.ruialves.chirp.domain.event.ChatCreatedEvent
 import com.ruialves.chirp.domain.event.ChatParticipantsJoinedEvent
 import com.ruialves.chirp.domain.event.ChatParticipantsLeftEvent
 import com.ruialves.chirp.domain.event.MessageDeletedEvent
@@ -11,6 +12,7 @@ import com.ruialves.chirp.domain.type.ChatId
 import com.ruialves.chirp.domain.type.UserId
 import com.ruialves.chirp.infra.service.ChatMessageService
 import com.ruialves.chirp.infra.service.ChatService
+import com.ruialves.chirp.infra.service.MessageCacheEvictionHelper
 import com.ruialves.chirp.service.JwtService
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpHeaders
@@ -25,7 +27,6 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
 import kotlin.concurrent.write
-import kotlin.math.log
 
 @Component
 class ChatWebSocketHandler(
@@ -175,22 +176,10 @@ class ChatWebSocketHandler(
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun onJoinChat(event: ChatParticipantsJoinedEvent) {
-        connectionLock.write {
-            event.userIds.forEach { userId ->
-                userChatIds.compute(userId) { _, chatIds ->
-                    (chatIds ?: mutableSetOf()).apply {
-                        add(event.chatId)
-                    }
-                }
-
-                userToSessions[userId]?.forEach { sessionId ->
-                    chatToSessions.compute(event.chatId) { _, sessions ->
-                        (sessions ?: mutableSetOf()).apply { add(sessionId) }
-                    }
-                }
-
-            }
-        }
+        updateChatForUsers(
+            chatId = event.chatId,
+            userIds = event.userIds.toList()
+        )
 
         broadcastToChat(
             chatId = event.chatId,
@@ -202,6 +191,38 @@ class ChatWebSocketHandler(
             )
         )
     }
+
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    fun onChatCreated(event: ChatCreatedEvent) {
+        updateChatForUsers(
+            chatId = event.chatId,
+            userIds = event.participantIds
+        )
+    }
+
+    private fun updateChatForUsers(
+        chatId: ChatId,
+        userIds: List<UserId>
+    ) {
+        connectionLock.write {
+            userIds.forEach { userId ->
+                userChatIds.compute(userId) { _, chatIds ->
+                    (chatIds ?: mutableSetOf()).apply {
+                        add(chatId)
+                    }
+                }
+
+                userToSessions[userId]?.forEach { sessionId ->
+                    chatToSessions.compute(chatId) { _, sessions ->
+                        (sessions ?: mutableSetOf()).apply { add(sessionId) }
+                    }
+                }
+
+            }
+        }
+
+    }
+
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     fun onLeftChat(event: ChatParticipantsLeftEvent) {
