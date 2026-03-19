@@ -5,22 +5,41 @@ on:
     branches:
       - master
 
+env:
+  JAR_NAME: app-0.0.1-SNAPSHOT.jar
+  LOCAL_JAR_PATH: app/build/libs/app-0.0.1-SNAPSHOT.jar
+  REMOTE_JAR_DIR: /opt/chirp
+  REMOTE_SERVICE: chirp.service
+  FIREBASE_PATH: app/src/main/resources/firebase-credentials/chirp-firebase-adminsdk.json
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Create Firebase credentials file
         run: |
-          mkdir -p app/src/main/resources/firebase-credentials
-          echo "${{ secrets.FIREBASE_CREDENTIALS_BASE64 }}" | base64 -d > app/src/main/resources/firebase-credentials/chirp-firebase-adminsdk.json
+          mkdir -p $(dirname "$FIREBASE_PATH")
+          echo "${{ secrets.FIREBASE_CREDENTIALS_BASE64 }}" | base64 -d > "$FIREBASE_PATH"
 
       - name: Build JAR
         run: |
           ./gradlew :app:bootJar
+
+      - name: Verify JAR exists
+        run: |
+          if [ ! -f "$LOCAL_JAR_PATH" ]; then
+            echo "ERROR: $LOCAL_JAR_PATH not found!"
+            exit 1
+          fi
+          echo "JAR ready: $(ls -lh $LOCAL_JAR_PATH)"
+          
+      - name: Setup known hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy JAR to Server
         uses: appleboy/ssh-action@v1.0.3
@@ -28,8 +47,16 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: admin
           key: ${{ secrets.DEPLOY_KEY }}
-          source: "app/build/libs/app-0.0.1-SNAPSHOT.jar"
-          target: "/opt/chirp/"
+          source: ${{ env.LOCAL_JAR_PATH }}
+          target: ${{ env.REMOTE_JAR_DIR }}/
           script: |
-            mv /opt/chirp/app-0.0.1-SNAPSHOT.jar /opt/chirp/chirp.jar
-            sudo systemctl restart chirp.service
+            # Verify transfer
+            if [ ! -f "${{ env.REMOTE_JAR_DIR }}/${{ env.JAR_NAME }}" ]; then
+              echo "ERROR: JAR not copied!"
+              exit 1
+            fi
+            
+            # Deploy & restart
+            mv "${{ env.REMOTE_JAR_DIR }}/${{ env.JAR_NAME }}" "${{ env.REMOTE_JAR_DIR }}/chirp.jar"
+            sudo systemctl restart ${{ env.REMOTE_SERVICE }}
+            sudo systemctl status ${{ env.REMOTE_SERVICE }} --no-pager -l
