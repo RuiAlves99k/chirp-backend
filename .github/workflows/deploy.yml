@@ -35,7 +35,7 @@ jobs:
         run: |
           JAR_NAME="app-0.0.1-SNAPSHOT.jar"
           LOCAL_JAR_PATH="app/build/libs/$JAR_NAME"
-          REMOTE_SERVER="admin@${{ SERVER_HOST }}"
+          REMOTE_SERVER="admin@${{ secrets.SERVER_HOST }}"
           REMOTE_JAR_DIR="/opt/chirp"
 
           rsync -avz -e "ssh" $LOCAL_JAR_PATH $REMOTE_SERVER:$REMOTE_JAR_DIR/$JAR_NAME
