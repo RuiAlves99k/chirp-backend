@@ -85,7 +85,8 @@ chirp:
       expiry-hours: 24
       expiry-minutes: 30
   rate-limit:
-    apply-limit: true
+    ip:
+      apply-limit: true
   web-socket:
     allowed-origin: ${ALLOWED_ORIGIN}
 nginx:
