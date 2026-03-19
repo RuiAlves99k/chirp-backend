@@ -20,6 +20,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa_deploy
+          chmod 600 ~/.ssh/id_rsa_deploy
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
       - name: Create Firebase credentials file
         run: |
           mkdir -p $(dirname "$FIREBASE_PATH")
@@ -36,28 +45,15 @@ jobs:
             exit 1
           fi
           echo "JAR ready: $(ls -lh $LOCAL_JAR_PATH)"
-          
-      - name: Setup known hosts
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy JAR to Server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: admin
-          key: ${{ secrets.DEPLOY_KEY }}
-          source: ${{ env.LOCAL_JAR_PATH }}
-          target: ${{ env.REMOTE_JAR_DIR }}/
-          script: |
-            # Verify transfer
-            if [ ! -f "${{ env.REMOTE_JAR_DIR }}/${{ env.JAR_NAME }}" ]; then
-              echo "ERROR: JAR not copied!"
-              exit 1
-            fi
-            
-            # Deploy & restart
-            mv "${{ env.REMOTE_JAR_DIR }}/${{ env.JAR_NAME }}" "${{ env.REMOTE_JAR_DIR }}/chirp.jar"
-            sudo systemctl restart ${{ env.REMOTE_SERVICE }}
-            sudo systemctl status ${{ env.REMOTE_SERVICE }} --no-pager -l
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+        run: |
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa_deploy" \
+            "$LOCAL_JAR_PATH" "admin@$SERVER_HOST:$REMOTE_JAR_DIR/$JAR_NAME"
+        
+          ssh -i ~/.ssh/id_rsa_deploy "admin@$SERVER_HOST" << EOF
+            mv $REMOTE_JAR_DIR/$JAR_NAME $REMOTE_JAR_DIR/chirp.jar
+            sudo systemctl restart $REMOTE_SERVICE
+          EOF
