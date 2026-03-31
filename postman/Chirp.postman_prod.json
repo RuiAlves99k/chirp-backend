@@ -1,0 +1,1339 @@
+{
+  "info": {
+    "_postman_id": "ccd4c286-30d3-49d8-ab23-324bcc041eab",
+    "name": "Chirp",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "6158339"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"alt.g9-a8dd1bk+1@yopmail.com\",\n    \"password\": \"Test12345!\",\n    \"username\": \"UserTest1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/register",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"goiwettagrefre-7836@yopmail.com\",\n    \"password\": \"Test12345!\",\n    \"username\": \"UserA\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/auth/register",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"katrottujunnei-8351@yopmail.com\",\n    \"password\": \"Test12345!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/login",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"katrottujunnei-8351@yopmail.com\",\n    \"password\": \"Test12345!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/auth/login",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Refresh",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYzY1Y2JjNy02MDExLTQyMGYtYWFjYS02NzQ1YjZiMTAxODUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTc2MjcxNzg5NSwiZXhwIjoxNzY1MzA5ODk1fQ.SakD-PtMISvmEsbUK6SXmJPG-KOVRX9UUPHN253R6oU\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/refresh",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "refresh"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Refresh",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYzY1Y2JjNy02MDExLTQyMGYtYWFjYS02NzQ1YjZiMTAxODUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTc2MjcxNzg5NSwiZXhwIjoxNzY1MzA5ODk1fQ.SakD-PtMISvmEsbUK6SXmJPG-KOVRX9UUPHN253R6oU\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/auth/refresh",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "refresh"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYzY1Y2JjNy02MDExLTQyMGYtYWFjYS02NzQ1YjZiMTAxODUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTc2MjcxNzg5NSwiZXhwIjoxNzY1MzA5ODk1fQ.SakD-PtMISvmEsbUK6SXmJPG-KOVRX9UUPHN253R6oU\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/logout",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Logout",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYzY1Y2JjNy02MDExLTQyMGYtYWFjYS02NzQ1YjZiMTAxODUiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTc2MjcxNzg5NSwiZXhwIjoxNzY1MzA5ODk1fQ.SakD-PtMISvmEsbUK6SXmJPG-KOVRX9UUPHN253R6oU\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/auth/logout",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Verify email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/verify?token=a",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "verify"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "a"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Verify email",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{localhost}}/api/auth/verify?token=a",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "verify"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "a"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Resend Verification",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"teste5@test.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/resend-verification",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "resend-verification"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Resend Verification",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"teste5@test.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/auth/resend-verification",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "resend-verification"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Forgot password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"fawouttazefou-4424@yopmail.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/forgot-password",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Forgot password",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"fawouttazefou-4424@yopmail.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/auth/forgot-password",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "forgot-password"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Reset password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"0lZIe0tJmTWIfE3V1N4IRJ3dJZEo58KK7BPmN3Vpu5o\",\n    \"newPassword\": \"Test123456!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/reset-password",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Reset password",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"token\": \"0lZIe0tJmTWIfE3V1N4IRJ3dJZEo58KK7BPmN3Vpu5o\",\n    \"newPassword\": \"Test123456!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/auth/reset-password",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "reset-password"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Change password",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxODQyZTYwMC05ZGQ1LTQ5NTEtYjFlYS1lYTg0YTkxZDE3MjUiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzY2NTI1MTA2LCJleHAiOjE3NjY1ODUxMDZ9.R4FmsK_eudT58f52CHEKglMD3IptnSnPKzU-92o_gcQ",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"teste1111@test.com\",\n    \"oldPassword\": \"Test12345!\",\n    \"newPassword\": \"Test123456!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/auth/change-password",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "change-password"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Change password",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxODQyZTYwMC05ZGQ1LTQ5NTEtYjFlYS1lYTg0YTkxZDE3MjUiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzY2NTI1MTA2LCJleHAiOjE3NjY1ODUxMDZ9.R4FmsK_eudT58f52CHEKglMD3IptnSnPKzU-92o_gcQ",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"teste1111@test.com\",\n    \"oldPassword\": \"Test12345!\",\n    \"newPassword\": \"Test123456!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/auth/change-password",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "change-password"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "chat",
+      "item": [
+        {
+          "name": "Get chat by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzcwNzQ0NjMwLCJleHAiOjE3NzA4MDQ2MzB9.UGinVXcFGsCDK1l6oTThY1jm33eUb15ZHygAUf2CIkE",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/chat/594823c8-cff7-424c-9484-38a3e2de7dac",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "chat",
+                "594823c8-cff7-424c-9484-38a3e2de7dac"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get chat by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzcwNzQ0NjMwLCJleHAiOjE3NzA4MDQ2MzB9.UGinVXcFGsCDK1l6oTThY1jm33eUb15ZHygAUf2CIkE",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{localhost}}/api/chat/594823c8-cff7-424c-9484-38a3e2de7dac",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "chat",
+                    "594823c8-cff7-424c-9484-38a3e2de7dac"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Get chat by user",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkY2FjZThhYS1kMGIwLTQ3NjctOGZkZi1hZjk3OGE4N2E5NTciLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNTM1ODQwLCJleHAiOjE3NzM1OTU4NDB9.4MjDEpGPru6JmECS2kWOfWux0nPRXstkCwJrjQfQjFg",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/chat",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "chat"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get chat by user",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkY2FjZThhYS1kMGIwLTQ3NjctOGZkZi1hZjk3OGE4N2E5NTciLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNTM1ODQwLCJleHAiOjE3NzM1OTU4NDB9.4MjDEpGPru6JmECS2kWOfWux0nPRXstkCwJrjQfQjFg",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{localhost}}/api/chat",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "chat"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzcwNzQ0NjMwLCJleHAiOjE3NzA4MDQ2MzB9.UGinVXcFGsCDK1l6oTThY1jm33eUb15ZHygAUf2CIkE",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"otherUserIds\": [\"dcace8aa-d0b0-4767-8fdf-af978a87a957\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/chat",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "chat"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create chat",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzcwNzQ0NjMwLCJleHAiOjE3NzA4MDQ2MzB9.UGinVXcFGsCDK1l6oTThY1jm33eUb15ZHygAUf2CIkE",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"otherUserIds\": [\"dcace8aa-d0b0-4767-8fdf-af978a87a957\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/chat",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "chat"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Add participant to chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzY2OTc0MTY5LCJleHAiOjE3NjcwMzQxNjl9.cUhPjZ_wXwQ2sN1uSyVC3J3nDjUe7-RS6mJMPqUhPvk",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"userIds\": [\"dcace8aa-d0b0-4767-8fdf-af978a87a957\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/chat/ca2e7ccc-b789-4c34-a1c2-b29d5d210e37/add",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "chat",
+                "ca2e7ccc-b789-4c34-a1c2-b29d5d210e37",
+                "add"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Add participant to chat",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzY2OTc0MTY5LCJleHAiOjE3NjcwMzQxNjl9.cUhPjZ_wXwQ2sN1uSyVC3J3nDjUe7-RS6mJMPqUhPvk",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"userIds\": [\"dcace8aa-d0b0-4767-8fdf-af978a87a957\"]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/chat/ca2e7ccc-b789-4c34-a1c2-b29d5d210e37/add",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "chat",
+                    "ca2e7ccc-b789-4c34-a1c2-b29d5d210e37",
+                    "add"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Leave chat",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzY2OTc0MTY5LCJleHAiOjE3NjcwMzQxNjl9.cUhPjZ_wXwQ2sN1uSyVC3J3nDjUe7-RS6mJMPqUhPvk",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/chat/ca2e7ccc-b789-4c34-a1c2-b29d5d210e37/leave",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "chat",
+                "ca2e7ccc-b789-4c34-a1c2-b29d5d210e37",
+                "leave"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Leave chat",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzY2OTc0MTY5LCJleHAiOjE3NjcwMzQxNjl9.cUhPjZ_wXwQ2sN1uSyVC3J3nDjUe7-RS6mJMPqUhPvk",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{localhost}}/api/chat/ca2e7ccc-b789-4c34-a1c2-b29d5d210e37/leave",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "chat",
+                    "ca2e7ccc-b789-4c34-a1c2-b29d5d210e37",
+                    "leave"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Delete message",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNDUzMjEwLCJleHAiOjE3NzM1MTMyMTB9.5MiL6p2JGRplDbSxXAtmotQsaTIhhKBjHDbMu3KTas0",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/messages/097fcf1b-3611-4b46-a871-3d0981ba0206",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "messages",
+                "097fcf1b-3611-4b46-a871-3d0981ba0206"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete message",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiM2U1MTdjYS04MmMwLTRhZDctOTBjNC02ZDg4NGNmOTIxYzYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNDUzMjEwLCJleHAiOjE3NzM1MTMyMTB9.5MiL6p2JGRplDbSxXAtmotQsaTIhhKBjHDbMu3KTas0",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{localhost}}/api/messages/097fcf1b-3611-4b46-a871-3d0981ba0206",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "messages",
+                    "097fcf1b-3611-4b46-a871-3d0981ba0206"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Get profile picture upload URL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNTM1OTI2LCJleHAiOjE3NzM1OTU5MjZ9.ePsB7nRHodNAat56lPRcmY1URzJ3RkdZw8QE8Mkt4pc",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/participants/profile-picture-upload?mimeType=image/jpeg",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "participants",
+                "profile-picture-upload"
+              ],
+              "query": [
+                {
+                  "key": "mimeType",
+                  "value": "image/jpeg"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get profile picture upload URL",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNTM1OTI2LCJleHAiOjE3NzM1OTU5MjZ9.ePsB7nRHodNAat56lPRcmY1URzJ3RkdZw8QE8Mkt4pc",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{localhost}}/api/participants/profile-picture-upload?mimeType=image/jpeg",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "participants",
+                    "profile-picture-upload"
+                  ],
+                  "query": [
+                    {
+                      "key": "mimeType",
+                      "value": "image/jpeg"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Confirm profile picture upload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNTM1OTI2LCJleHAiOjE3NzM1OTU5MjZ9.ePsB7nRHodNAat56lPRcmY1URzJ3RkdZw8QE8Mkt4pc",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"publicUrl\": \"https://kavlgxzfjleamgsrbamo.supabase.co/storage/v1/object/public/profile-pictures/user_4593db2f-a2bb-4501-9083-c93210791f90_e7b96af1-c94c-40de-956b-94d413d0a1a9.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/participants/confirm-profile-picture",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "participants",
+                "confirm-profile-picture"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Confirm profile picture upload",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNTM1OTI2LCJleHAiOjE3NzM1OTU5MjZ9.ePsB7nRHodNAat56lPRcmY1URzJ3RkdZw8QE8Mkt4pc",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"publicUrl\": \"https://kavlgxzfjleamgsrbamo.supabase.co/storage/v1/object/public/profile-pictures/user_4593db2f-a2bb-4501-9083-c93210791f90_e7b96af1-c94c-40de-956b-94d413d0a1a9.jpg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/participants/confirm-profile-picture",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "participants",
+                    "confirm-profile-picture"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Delete profile picture",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNTM1OTI2LCJleHAiOjE3NzM1OTU5MjZ9.ePsB7nRHodNAat56lPRcmY1URzJ3RkdZw8QE8Mkt4pc",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/participants/delete-profile-picture",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "participants",
+                "delete-profile-picture"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete profile picture",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNTM1OTI2LCJleHAiOjE3NzM1OTU5MjZ9.ePsB7nRHodNAat56lPRcmY1URzJ3RkdZw8QE8Mkt4pc",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{localhost}}/api/participants/delete-profile-picture",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "participants",
+                    "delete-profile-picture"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "notification",
+      "item": [
+        {
+          "name": "Register device",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNjg4NzQ1LCJleHAiOjE3NzM3NDg3NDV9.zZBRhqMvEJHjkbRqbhH71JBwUVVWgM5GluTG9DA_uzs",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"123\",\n    \"platform\": \"ANDROID\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://chirp.rui-alves.com/api/notification/register",
+              "protocol": "https",
+              "host": [
+                "chirp",
+                "rui-alves",
+                "com"
+              ],
+              "path": [
+                "api",
+                "notification",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register device",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNjg4NzQ1LCJleHAiOjE3NzM3NDg3NDV9.zZBRhqMvEJHjkbRqbhH71JBwUVVWgM5GluTG9DA_uzs",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"token\": \"123\",\n    \"platform\": \"ANDROID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{localhost}}/api/notification/register",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notification",
+                    "register"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Unregister device",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNjg4NzQ1LCJleHAiOjE3NzM3NDg3NDV9.zZBRhqMvEJHjkbRqbhH71JBwUVVWgM5GluTG9DA_uzs",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{localhost}}/api/notification/asfn12112-213412prpr12",
+              "host": [
+                "{{localhost}}"
+              ],
+              "path": [
+                "api",
+                "notification",
+                "asfn12112-213412prpr12"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Unregister device",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTkzZGIyZi1hMmJiLTQ1MDEtOTA4My1jOTMyMTA3OTFmOTAiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNzczNjg4NzQ1LCJleHAiOjE3NzM3NDg3NDV9.zZBRhqMvEJHjkbRqbhH71JBwUVVWgM5GluTG9DA_uzs",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{localhost}}/api/notification/asfn12112-213412prpr12",
+                  "host": [
+                    "{{localhost}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notification",
+                    "asfn12112-213412prpr12"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "localhost",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
