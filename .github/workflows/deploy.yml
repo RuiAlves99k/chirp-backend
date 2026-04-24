@@ -6,6 +6,7 @@ on:
       - master
 
 env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   JAR_NAME: app-0.0.1-SNAPSHOT.jar
   LOCAL_JAR_PATH: app/build/libs/app-0.0.1-SNAPSHOT.jar
   REMOTE_JAR_DIR: /opt/chirp
@@ -18,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup SSH
         env:
