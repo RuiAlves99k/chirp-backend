@@ -77,7 +77,7 @@ class EmailService(
 
         sendHtmlEmail(
             to = email,
-            subject = "Verify Chirp account",
+            subject = "Reset Chirp password",
             html = htmlContent
         )
     }
