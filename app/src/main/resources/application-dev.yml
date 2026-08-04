@@ -12,4 +12,10 @@ nginx:
 
 logging:
   level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        orm:
+          jbdc:
+            bind: TRACE
     com.ruialves.chirp: DEBUG
