@@ -146,8 +146,8 @@ class ChatService(
 
     @Cacheable(
         value = ["messages"],
-        key = "#chatId",
-        condition = "before == null && #pageSize <= 50",
+        key = "#chatId + ':' + #pageSize",
+        condition = "#before == null && #pageSize <= 50",
         sync = true
     )
     fun getChatMessages(

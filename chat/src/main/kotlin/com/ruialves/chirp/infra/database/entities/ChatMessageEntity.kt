@@ -11,10 +11,13 @@ import jakarta.persistence.Id
 import jakarta.persistence.Index
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.PostLoad
+import jakarta.persistence.PostPersist
 import jakarta.persistence.Table
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
+import org.springframework.data.domain.Persistable
 import java.time.Instant
 
 @Entity
@@ -30,8 +33,7 @@ import java.time.Instant
 )
 class ChatMessageEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    var id: ChatMessageId? = null,
+    var id: ChatMessageId,
     @Column(nullable = false)
     var content: String,
     @Column(

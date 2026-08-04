@@ -40,7 +40,7 @@ fun ChatParticipant.toChatParticipantEntity(): ChatParticipantEntity {
 
 fun ChatMessageEntity.toChatMessage(): ChatMessage {
     return ChatMessage(
-        id = id!!,
+        id = id,
         chatId = chatId,
         sender = sender.toChatParticipant(),
         content = content,
